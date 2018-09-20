@@ -69,7 +69,7 @@ Example Playbook
           destination: /
 ```
 
-Nota bene: This role is not idempotent, because it's a list of actions, not a st
+Nota bene: This role is not idempotent, because it's a list of actions, not a state.
 
 To install this role:
 - Install this role individually using `ansible-galaxy install robertdebock.restore`
