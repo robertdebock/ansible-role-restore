@@ -63,8 +63,13 @@ Example Playbook
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.restore
-      restore_parameter: value
+      restore_objects:
+        - name: home
+          type: directory
+          destination: /
 ```
+
+Nota bene: This role is not idempotent, because it's a list of actions, not a st
 
 To install this role:
 - Install this role individually using `ansible-galaxy install robertdebock.restore`
@@ -75,6 +80,7 @@ Sample roles/requirements.yml: (install with `ansible-galaxy install -r roles/re
 - name: robertdebock.bootstrap
 - name: robertdebock.restore
 ```
+ate.
 
 License
 -------
