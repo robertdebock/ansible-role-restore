@@ -1,0 +1,21 @@
+---
+# tasks file for restore
+- name: load default variables
+  include_vars:
+    file: default.yml
+
+- name: load os-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - default.yml
+
+- name: loop over objects in restore_objects
+  include_tasks: object.yml
+  with_items: "{{ restore_objects }}"
+  loop_control:
+    loop_var: object
+  when:
+    - restore_objects is defined
+

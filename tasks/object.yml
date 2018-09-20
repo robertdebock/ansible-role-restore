@@ -1,0 +1,37 @@
+---
+- name: find most recent object
+  find:
+    paths: "{{ restore_directory }}/{{ inventory_hostname }}"
+    patterns: "{{ object.type }}-{{ object.name }}-*"
+  register: found_files
+  delegate_to: localhost
+  become: no
+
+- name: select latest file in found_files
+  set_fact:
+    latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
+  when:
+    - found_files.files | length > 0
+
+- name: copy latest file
+  copy:
+    src: "{{ latest_file.path }}"
+    dest: "{{ restore_directory }}/{{ latest_file.path | basename }}"
+  when:
+    - latest_file.path is defined
+
+- name: unarchive directory object
+  unarchive:
+    src: "{{ latest_file.path }}"
+    dest: "{{ object.destination }}"
+  when:
+    - latest_file.path is defined
+    - object.type == "directory"
+
+- name: import mysql database
+  mysql_db:
+    name: "{{ object.destination }}"
+    target: "{{ restore_directory }}/{{ latest_file.path | basename }}"
+    state: import
+  when:
+    - latest_file.path is defined

@@ -1,0 +1,19 @@
+---
+# defaults file for restore
+
+# What directory are the objects to be restored saved?
+restore_directory: backups
+
+# The directory of objects which need to be placed on the managed node
+# temporarily.
+restore_remote_directory: /tmp
+
+# A list of objects to restore.
+
+restore_objects:
+  - name: varspool
+    type: directory
+    destination: /var
+  - name: drupal
+    type: mysql
+    destination: drupal
