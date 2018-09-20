@@ -7,13 +7,17 @@
   delegate_to: localhost
   become: no
 
+- name: show found_files
+  debug:
+    var: found_files
+
 - name: select latest file in found_files
   set_fact:
     latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
   when:
     - found_files.files | length > 0
 
-- name: show shit
+- name: show latest_file
   debug:
     var: latest_file
 
