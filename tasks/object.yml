@@ -28,10 +28,16 @@
     - latest_file is defined
     - object.type == "directory"
 
+- name: unarchive mysql object
+  unarchive:
+    src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
+    dest: "{{ restore_remote_directory }}"
+    remote_src: yes
+
 - name: import mysql database
   mysql_db:
     name: "{{ object.destination }}"
-    target: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
+    target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
     state: import
   when:
     - latest_file is defined
