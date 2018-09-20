@@ -33,6 +33,9 @@
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ restore_remote_directory }}"
     remote_src: yes
+  when:
+    - latest_file is defined
+    - object.type == "mysql"
 
 - name: import mysql database
   mysql_db:
