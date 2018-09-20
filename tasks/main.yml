@@ -18,4 +18,3 @@
     loop_var: object
   when:
     - restore_objects is defined
-
