@@ -16,7 +16,7 @@
 - name: copy latest file
   copy:
     src: "{{ latest_file.path }}"
-    dest: "{{ restore_directory }}/{{ latest_file.path | basename }}"
+    dest: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
   when:
     - latest_file.path is defined
 
@@ -31,7 +31,7 @@
 - name: import mysql database
   mysql_db:
     name: "{{ object.destination }}"
-    target: "{{ restore_directory }}/{{ latest_file.path | basename }}"
+    target: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     state: import
   when:
     - latest_file.path is defined

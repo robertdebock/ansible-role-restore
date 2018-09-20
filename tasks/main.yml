@@ -11,6 +11,11 @@
     - "{{ ansible_distribution }}.yml"
     - default.yml
 
+- name: create remote_backup_directory
+  file:
+    path: "{{ restore_remote_directory }}"
+    state: directory
+
 - name: loop over objects in restore_objects
   include_tasks: object.yml
   with_items: "{{ restore_objects }}"
