@@ -30,7 +30,7 @@
     src: "{{ latest_file.path }}"
     dest: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
   when:
-    - latest_file.path is defined
+    - latest_file is defined
 
 - name: unarchive directory object
   unarchive:
