@@ -11,6 +11,10 @@
   debug:
     var: found_files
 
+- name: show found_files.files length
+  debug:
+    msg: "{{ found_files.files | length }}"
+
 - name: select latest file in found_files
   set_fact:
     latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
