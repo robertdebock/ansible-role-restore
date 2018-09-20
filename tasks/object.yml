@@ -15,7 +15,7 @@
   debug:
     msg: "{{ found_files.files | length }}"
 
-- name: select latest file in found_files
+- name: select latest_file in found_files
   set_fact:
     latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
   when:
@@ -25,7 +25,7 @@
   debug:
     var: latest_file
 
-- name: copy latest file
+- name: copy latest_file
   copy:
     src: "{{ latest_file.path }}"
     dest: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
@@ -37,7 +37,7 @@
     src: "{{ latest_file.path }}"
     dest: "{{ object.destination }}"
   when:
-    - latest_file.path is defined
+    - latest_file is defined
     - object.type == "directory"
 
 - name: import mysql database
