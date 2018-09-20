@@ -7,23 +7,11 @@
   delegate_to: localhost
   become: no
 
-- name: show found_files
-  debug:
-    var: found_files
-
-- name: show found_files.files length
-  debug:
-    msg: "{{ found_files.files | length }}"
-
 - name: select latest_file in found_files
   set_fact:
     latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
   when:
     - found_files.files | length > 0
-
-- name: show latest_file
-  debug:
-    var: latest_file
 
 - name: copy latest_file
   copy:
@@ -46,4 +34,5 @@
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     state: import
   when:
-    - latest_file.path is defined
+    - latest_file is defined
+    - object.type == "mysql"
