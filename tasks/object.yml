@@ -32,6 +32,7 @@
   unarchive:
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ restore_remote_directory }}"
+    exclude: "{{ object.exclude | default(omit) }}"
     remote_src: yes
   when:
     - latest_file is defined
