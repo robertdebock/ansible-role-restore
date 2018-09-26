@@ -28,6 +28,12 @@
     - latest_file is defined
     - object.type == "directory"
 
+- name: find extension
+  set_fact:
+    latest_file_extension: "{{ latest_file.path | basename | splitext | last }}"  when:
+    - latest_file is defined
+    - object.type == "mysql"
+
 - name: unarchive mysql object
   unarchive:
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
@@ -37,6 +43,7 @@
   when:
     - latest_file is defined
     - object.type == "mysql"
+    - latest_file_extension in [".gz", ".tgz", ".tar", ".zip"]
 
 - name: import mysql database
   mysql_db:
