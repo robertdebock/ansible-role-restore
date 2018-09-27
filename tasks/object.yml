@@ -30,7 +30,8 @@
 
 - name: find extension
   set_fact:
-    latest_file_extension: "{{ latest_file.path | basename | splitext | last }}"  when:
+    latest_file_extension: "{{ latest_file.path | basename | splitext | last }}"
+  when:
     - latest_file is defined
     - object.type == "mysql"
 
