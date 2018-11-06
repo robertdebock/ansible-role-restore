@@ -1,1 +1,0 @@
-This role can be used to restore objects to a machine. Ansible is not a great backup/restore tool, but for a few simple objects it will do the job.

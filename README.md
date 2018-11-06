@@ -3,8 +3,7 @@ restore
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-restore.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-restore)
 
-This role can be used to restore objects to a machine. Ansible is not a great backup/restore tool, but for a few simple objects it will do the job.
-
+The purpose of this role is to restore objects to your system.
 
 Example Playbook
 ----------------
