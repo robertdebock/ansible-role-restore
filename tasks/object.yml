@@ -9,7 +9,7 @@
 
 - name: select latest_file in found_files
   set_fact:
-    latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
+    latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=yes) | first }}"
   when:
     - found_files.files | length > 0
 
