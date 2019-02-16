@@ -34,8 +34,10 @@ platforms:
     image: opensuse:leap
   - name: restore-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: restore-ubuntu-artful
-    image: ubuntu:artful
+  - name: restore-ubuntu-latest
+    image: ubuntu:latest
+  - name: restore-ubuntu-rolling
+    image: ubuntu:rolling
   - name: restore-ubuntu-devel
     image: ubuntu:devel
   - name: restore-ubuntu-latest
