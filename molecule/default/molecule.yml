@@ -32,8 +32,6 @@ platforms:
     image: fedora:rawhide
   - name: restore-opensuse-leap
     image: opensuse:leap
-  - name: restore-opensuse-tumbleweed
-    image: opensuse:tumbleweed
   - name: restore-ubuntu-latest
     image: ubuntu:latest
   - name: restore-ubuntu-rolling
