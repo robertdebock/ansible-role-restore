@@ -6,8 +6,8 @@ restore
 
 The purpose of this role is to restore objects to your system.
 
-<img src="https://img.shields.io/ansible/role/d/"/>
-<img src="https://img.shields.io/ansible/quality/"/>
+<img src="https://img.shields.io/ansible/role/d/29918"/>
+<img src="https://img.shields.io/ansible/quality/29918"/>
 
 Example Playbook
 ----------------
