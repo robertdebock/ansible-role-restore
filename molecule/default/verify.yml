@@ -11,11 +11,7 @@
           encoding: utf8
           collation: utf8_bin
     - role: ansible-role-backup
-      backup_directory: backups
-      backup_remote_directory: /tmp
-      backup_cleanup: yes
-      backup_timestamp: "{{ ansible_date_time.date }}"
-      backup_format: gz
+      backup_format: tar
       backup_objects:
         - name: home
           type: directory
@@ -25,8 +21,6 @@
           source: test_db
           format: zip
     - role: ansible-role-restore
-      restore_directory: backups
-      restore_remote_directory: /tmp
       restore_objects:
         - name: home
           type: directory
