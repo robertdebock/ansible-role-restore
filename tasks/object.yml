@@ -9,9 +9,9 @@
 
 - name: select latest_file in found_files
   set_fact:
-    latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=yes) | first }}"
+    latest_file: "{{ found_files.files | sort(attribute='mtime') | last }}"
   when:
-    - found_files.files | length > 0
+    - found_files.files | length
 
 - name: copy latest_file
   copy:
@@ -22,8 +22,9 @@
 
 - name: unarchive directory object
   unarchive:
-    src: "{{ latest_file.path }}"
+    src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ object.destination }}"
+    remote_src: yes
   when:
     - latest_file is defined
     - object.type == "directory"

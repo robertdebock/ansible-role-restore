@@ -9,7 +9,7 @@ The purpose of this role is to restore objects to your system.
 Example Playbook
 ----------------
 
-This example is taken from `molecule/resources/playbook.yml`:
+This example is taken from `molecule/resources/playbook.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -21,7 +21,7 @@ This example is taken from `molecule/resources/playbook.yml`:
     - robertdebock.restore
 ```
 
-The machine you are running this on, may need to be prepared.
+The machine you are running this on, may need to be prepared, I use this playbook to ensure everything is in place to let the role work.
 ```yaml
 ---
 - name: Prepare
@@ -30,7 +30,49 @@ The machine you are running this on, may need to be prepared.
   become: yes
 
   roles:
-    - robertdebock.bootstrap
+    - role: robertdebock.bootstrap
+    - role: robertdebock.core_dependencies
+```
+
+After running this role, this playbook runs to verify that everything works, this may be a good example how you can use this role.
+```yaml
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: robertdebock.mysql
+      mysql_databases:
+        - name: test_db
+          encoding: utf8
+          collation: utf8_bin
+    - role: robertdebock.backup
+      backup_directory: backups
+      backup_remote_directory: /tmp
+      backup_cleanup: yes
+      backup_timestamp: "{{ ansible_date_time.date }}"
+      backup_format: gz
+      backup_objects:
+        - name: home
+          type: directory
+          source: /home
+        - name: test_db
+          type: mysql
+          source: test_db
+          format: zip
+    - role: robertdebock.restore
+      restore_directory: backups
+      restore_remote_directory: /tmp
+      restore_objects:
+        - name: home
+          type: directory
+          destination: /home
+        - name: test_db
+          type: mysql
+          destination: test_db
+
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -77,7 +119,10 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ```yaml
 ---
+- robertdebock.backup
 - robertdebock.bootstrap
+- robertdebock.core_dependencies
+- robertdebock.mysql
 
 ```
 
@@ -97,10 +142,7 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tag|allow_failures|
 |---------|---|--------------|
-|amazonlinux|1|no|
 |amazonlinux|latest|no|
-|alpine|latest|no|
-|alpine|edge|yes|
 |debian|unstable|yes|
 |debian|latest|no|
 |centos|7|no|
@@ -116,6 +158,15 @@ This role has been tested on these Ansible versions:
 - ansible>=2.9
 - git+https://github.com/ansible/ansible.git@devel
 
+Exceptions
+----------
+
+Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
+
+| variation                 | reason                 |
+|---------------------------|------------------------|
+| amazonlinux:1 | Testing mysql fails, because a dependecy (ansible-role-mysql) is not met. |
+| alpine | Testing mysql fails, because a dependecy (ansible-role-mysql) is not met. |
 
 
 

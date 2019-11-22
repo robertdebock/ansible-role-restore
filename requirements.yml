@@ -1,2 +1,5 @@
 ---
+- robertdebock.backup
 - robertdebock.bootstrap
+- robertdebock.core_dependencies
+- robertdebock.mysql
