@@ -2,3 +2,5 @@
 *.log
 *.swp
 .tox
+.tar
+.zip
