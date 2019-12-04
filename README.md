@@ -43,17 +43,13 @@ After running this role, this playbook runs to verify that everything works, thi
   gather_facts: yes
 
   roles:
-    - role: robertdebock.mysql
+    - role: {{ galaxy_namespace }}.mysql
       mysql_databases:
         - name: test_db
           encoding: utf8
           collation: utf8_bin
-    - role: robertdebock.backup
-      backup_directory: backups
-      backup_remote_directory: /tmp
-      backup_cleanup: yes
-      backup_timestamp: "{{ ansible_date_time.date }}"
-      backup_format: gz
+    - role: {{ galaxy_namespace }}.backup
+      backup_format: tar
       backup_objects:
         - name: home
           type: directory
@@ -62,9 +58,7 @@ After running this role, this playbook runs to verify that everything works, thi
           type: mysql
           source: test_db
           format: zip
-    - role: robertdebock.restore
-      restore_directory: backups
-      restore_remote_directory: /tmp
+    - role: {{ galaxy_namespace }}.restore
       restore_objects:
         - name: home
           type: directory
@@ -167,7 +161,6 @@ Some variarations of the build matrix do not work. These are the variations and 
 |---------------------------|------------------------|
 | amazonlinux:1 | Testing mysql fails, because a dependecy (ansible-role-mysql) is not met. |
 | alpine | Testing mysql fails, because a dependecy (ansible-role-mysql) is not met. |
-
 
 
 Testing
