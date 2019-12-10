@@ -43,12 +43,12 @@ After running this role, this playbook runs to verify that everything works, thi
   gather_facts: yes
 
   roles:
-    - role: {{ galaxy_namespace }}.mysql
+    - role: robertdebock.mysql
       mysql_databases:
         - name: test_db
           encoding: utf8
           collation: utf8_bin
-    - role: {{ galaxy_namespace }}.backup
+    - role: robertdebock.backup
       backup_format: tar
       backup_objects:
         - name: home
@@ -58,7 +58,7 @@ After running this role, this playbook runs to verify that everything works, thi
           type: mysql
           source: test_db
           format: zip
-    - role: {{ galaxy_namespace }}.restore
+    - role: robertdebock.restore
       restore_objects:
         - name: home
           type: directory
@@ -66,7 +66,7 @@ After running this role, this playbook runs to verify that everything works, thi
         - name: test_db
           type: mysql
           destination: test_db
-
+```
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -134,23 +134,21 @@ Compatibility
 
 This role has been tested on these [container images](https://hub.docker.com/):
 
-|container|tag|allow_failures|
-|---------|---|--------------|
-|amazonlinux|latest|no|
-|debian|unstable|yes|
-|debian|latest|no|
-|centos|7|no|
-|centos|latest|no|
-|fedora|latest|no|
-|fedora|rawhide|yes|
-|opensuse|latest|no|
-|ubuntu|latest|no|
+|container|tags|
+|---------|----|
+|amazon|Candidate|
+|archlinux|all|
+|debian|all|
+|el|7, 8|
+|fedora|all|
+|opensuse|all|
+|ubuntu|artful, bionic|
 
-This role has been tested on these Ansible versions:
+The minimum version of Ansible required is 2.8 but tests have been done to:
 
-- ansible>=2.8, <2.9
-- ansible>=2.9
-- git+https://github.com/ansible/ansible.git@devel
+- The previous version, on version lower.
+- The current version.
+- The development version.
 
 Exceptions
 ----------
@@ -196,21 +194,6 @@ tox
 image="centos" tox
 # Or customize more:
 image="debian" tag="stable" tox
-```
-
-Modules
--------
-
-This role uses the following modules:
-```yaml
----
-- copy
-- file
-- find
-- include_tasks
-- mysql_db
-- set_fact
-- unarchive
 ```
 
 License
