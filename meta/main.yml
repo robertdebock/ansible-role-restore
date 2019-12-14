@@ -35,7 +35,6 @@ galaxy_info:
   galaxy_tags:
     - restore
     - centos
-    - rhel
     - server
     - system
 
