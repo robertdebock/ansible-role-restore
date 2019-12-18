@@ -49,7 +49,7 @@ After running this role, this playbook runs to verify that everything works, thi
           encoding: utf8
           collation: utf8_bin
     - role: robertdebock.backup
-      backup_format: tar
+      backup_format: zip
       backup_objects:
         - name: home
           type: directory
