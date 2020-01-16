@@ -21,13 +21,14 @@
     - latest_file is defined
 
 - name: unarchive directory object
-  unarchive:
-    src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
-    dest: "{{ object.destination }}"
-    remote_src: yes
+  command: unzip "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
+  args:
+    warn: no
   when:
     - latest_file is defined
     - object.type == "directory"
+  tags:
+    - skip_ansible_lint
 
 - name: find extension
   set_fact:
