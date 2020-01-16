@@ -44,6 +44,12 @@ After running this role, this playbook runs to verify that everything works, thi
   become: yes
   gather_facts: yes
 
+  pre_tasks:
+    - name: create a directory to backup
+      file:
+        path: /home/test
+        state: directory
+
   roles:
     - role: robertdebock.mysql
       mysql_databases:
