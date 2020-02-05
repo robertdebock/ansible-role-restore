@@ -7,7 +7,7 @@
 
 - name: loop over objects in restore_objects
   include_tasks: object.yml
-  with_items: "{{ restore_objects }}"
+  loop: "{{ restore_objects }}"
   loop_control:
     loop_var: object
   when:
