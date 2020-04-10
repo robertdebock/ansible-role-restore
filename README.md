@@ -49,10 +49,15 @@ For verification `molecule/resources/verify.yml` run after the role has been app
 
   roles:
     - role: robertdebock.mysql
+
       mysql_databases:
         - name: test_db
           encoding: utf8
           collation: utf8_bin
+      mysql_users:
+        - name: restore
+          password: rest0re
+          priv: "test_db.*:ALL"
     - role: robertdebock.backup
       backup_format: zip
       backup_objects:
@@ -64,6 +69,8 @@ For verification `molecule/resources/verify.yml` run after the role has been app
           source: test_db
           format: zip
     - role: robertdebock.restore
+      restore_mysql_username: restore
+      restore_mysql_password: rest0re
       restore_objects:
         - name: home
           type: directory
@@ -96,6 +103,11 @@ restore_remote_directory: /tmp
 #   destination, a directory where to unpack the object.
 #
 # Nota bene; the [backup role](http://galaxy.ansible.com/robertdebock/backup) can be used to create restorable objects. The objects created with this role include the parent directory, so the destination mentioned here ~misses~ the last part of the directory
+
+# Credentials to login to the mysql database, only require when restoring mysql
+# objects.
+restore_mysql_username: ""
+restore_mysql_password: ""
 
 restore_objects:
   - name: varspool
