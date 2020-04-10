@@ -52,6 +52,9 @@
   mysql_db:
     name: "{{ object.destination }}"
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
+    login_unix_socket: "{{ restore_mysql_socket }}"
+    login_user: "{{ restore_mysql_username | default(omit) }}"
+    login_password: "{{ restore_mysql_password | default(omit) }}"
     state: import
   when:
     - latest_file is defined

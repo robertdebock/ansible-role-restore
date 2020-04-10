@@ -12,10 +12,15 @@
 
   roles:
     - role: robertdebock.mysql
+
       mysql_databases:
         - name: test_db
           encoding: utf8
           collation: utf8_bin
+      mysql_users:
+        - name: restore
+          password: rest0re
+          priv: "test_db.*:ALL"
     - role: robertdebock.backup
       backup_format: zip
       backup_objects:
@@ -27,6 +32,8 @@
           source: test_db
           format: zip
     - role: ansible-role-restore
+      restore_mysql_username: restore
+      restore_mysql_password: rest0re
       restore_objects:
         - name: home
           type: directory
