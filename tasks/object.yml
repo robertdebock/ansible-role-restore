@@ -3,15 +3,15 @@
   find:
     paths: "{{ restore_directory }}/{{ inventory_hostname }}"
     patterns: "{{ object.type }}-{{ object.name }}-*"
-  register: found_files
+  register: restore_found_files
   delegate_to: localhost
   become: no
 
-- name: select latest_file in found_files
+- name: select latest_file in restore_found_files
   set_fact:
-    latest_file: "{{ found_files.files | sort(attribute='mtime') | last }}"
+    latest_file: "{{ restore_found_files.files | sort(attribute='mtime') | last }}"
   when:
-    - found_files.files | length
+    - restore_found_files.files | length
 
 - name: copy latest_file
   copy:
