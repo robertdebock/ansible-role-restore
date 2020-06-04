@@ -2,9 +2,9 @@
 
 The purpose of this role is to restore objects to your system.
 
-|Travis|GitHub|Quality|Downloads|
-|------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-restore.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-restore)|[![github](https://github.com/robertdebock/ansible-role-restore/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-restore/actions)|[![quality](https://img.shields.io/ansible/quality/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![downloads](https://img.shields.io/ansible/role/d/29918)](https://galaxy.ansible.com/robertdebock/restore)|
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-restore.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-restore)|[![github](https://github.com/robertdebock/ansible-role-restore/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-restore/actions)|[![quality](https://img.shields.io/ansible/quality/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![downloads](https://img.shields.io/ansible/role/d/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-restore.svg)](https://github.com/robertdebock/ansible-role-restore/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
