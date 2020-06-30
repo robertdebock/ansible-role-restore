@@ -1,0 +1,44 @@
+---
+- name: test if restore_directory is set correctly
+  assert:
+    that:
+      - restore_directory is defined
+      - restore_directory | length > 0
+
+- name: test if restore_remote_directory is set correctly
+  assert:
+    that:
+      - restore_remote_directory is defined
+      - restore_remote_directory | length > 0
+
+- name: test if restore_mysql_username is set correctly
+  assert:
+    that:
+      - restore_mysql_username | length > 0
+  when:
+    - restore_mysql_username is defined
+
+- name: test if restore_mysql_password is set correctly
+  assert:
+    that:
+      - restore_mysql_password | length > 0
+  when:
+    - restore_mysql_password is defined
+
+- name: test if restore_objects is set correctly
+  assert:
+    that:
+      - restore_objects is defined
+      - restore_objects | length > 0
+      - restore_objects is iterable
+
+- name: test if item in restore_objects is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name | length > 0
+      - item.type is defined
+      - item.type | length > 0
+      - item.type in ["directory", "mysql"]
+      - item.destination is defined
+      - item.destination | length > 0

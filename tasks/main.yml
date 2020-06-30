@@ -1,5 +1,8 @@
 ---
 # tasks file for restore
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: create remote_backup_directory
   file:
     path: "{{ restore_remote_directory }}"
