@@ -8,6 +8,11 @@ restore_directory: backups
 # temporarily.
 restore_remote_directory: /tmp
 
+# Credentials to login to the mysql database, only require when restoring mysql
+# objects.
+restore_mysql_username: ""
+restore_mysql_password: ""
+
 # A list of objects to restore.
 # Each list item should have:
 # - name to find the object locally.
@@ -15,11 +20,6 @@ restore_remote_directory: /tmp
 #   destination, a directory where to unpack the object.
 #
 # Nota bene; the [backup role](http://galaxy.ansible.com/robertdebock/backup) can be used to create restorable objects. The objects created with this role include the parent directory, so the destination mentioned here ~misses~ the last part of the directory
-
-# Credentials to login to the mysql database, only require when restoring mysql
-# objects.
-restore_mysql_username: ""
-restore_mysql_password: ""
 
 restore_objects:
   - name: varspool
