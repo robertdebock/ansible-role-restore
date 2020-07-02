@@ -42,4 +42,5 @@
       - item.type in ["directory", "mysql"]
       - item.destination is defined
       - item.destination | length > 0
+    quiet: yes
   loop: "{{ restore_objects }}"
