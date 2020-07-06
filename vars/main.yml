@@ -1,4 +1,6 @@
 ---
+# vars file for restore
+
 _restore_mysql_socket:
   default: /var/run/mysql/mysql.sock
   Debian: /tmp/mysqld.sock
