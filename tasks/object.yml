@@ -17,6 +17,7 @@
   copy:
     src: "{{ latest_file.path }}"
     dest: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
+    mode: "0644"
   when:
     - latest_file is defined
 
@@ -43,6 +44,7 @@
     dest: "{{ restore_remote_directory }}"
     exclude: "{{ object.exclude | default(omit) }}"
     remote_src: yes
+    mode: "0755"
   when:
     - latest_file is defined
     - object.type == "mysql"
