@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   become: yes
-  gather_facts: yes
+  gather_facts: no
 
   pre_tasks:
     - name: create a directory to backup
