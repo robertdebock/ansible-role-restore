@@ -31,6 +31,7 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
+    - role: robertdebock.mysql
 ```
 
 For verification `molecule/resources/verify.yml` runs after the role has been applied.
@@ -49,7 +50,6 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
 
   roles:
     - role: robertdebock.mysql
-
       mysql_databases:
         - name: test_db
           encoding: utf8

@@ -12,7 +12,6 @@
 
   roles:
     - role: robertdebock.mysql
-
       mysql_databases:
         - name: test_db
           encoding: utf8
