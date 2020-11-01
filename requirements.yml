@@ -1,5 +1,6 @@
 ---
-- robertdebock.backup
-- robertdebock.bootstrap
-- robertdebock.core_dependencies
-- robertdebock.mysql
+roles:
+  - name: robertdebock.backup
+  - name: robertdebock.bootstrap
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.mysql
