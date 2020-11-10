@@ -48,7 +48,7 @@
   when:
     - latest_file is defined
     - object.type == "mysql"
-    - latest_file_extension in [".gz", ".tgz", ".tar", ".zip"]
+    - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
 
 - name: import mysql database
   mysql_db:

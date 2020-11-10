@@ -44,7 +44,7 @@
       - item.name | length > 0
       - item.type is defined
       - item.type | length > 0
-      - item.type in ["directory", "mysql"]
+      - item.type in [ "directory", "mysql" ]
       - item.destination is defined
       - item.destination | length > 0
     quiet: yes
