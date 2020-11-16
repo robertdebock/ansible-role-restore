@@ -3,20 +3,17 @@
   assert:
     that:
       - restore_directory is defined
-      - restore_directory | length > 0
     quiet: yes
 
 - name: test if restore_remote_directory is set correctly
   assert:
     that:
       - restore_remote_directory is defined
-      - restore_remote_directory | length > 0
     quiet: yes
 
 - name: test if restore_mysql_username is set correctly
   assert:
     that:
-      - restore_mysql_username | length > 0
     quiet: yes
   when:
     - restore_mysql_username is defined
@@ -24,7 +21,6 @@
 - name: test if restore_mysql_password is set correctly
   assert:
     that:
-      - restore_mysql_password | length > 0
     quiet: yes
   when:
     - restore_mysql_password is defined
@@ -33,7 +29,6 @@
   assert:
     that:
       - restore_objects is defined
-      - restore_objects | length > 0
       - restore_objects is iterable
     quiet: yes
 
@@ -41,12 +36,9 @@
   assert:
     that:
       - item.name is defined
-      - item.name | length > 0
       - item.type is defined
-      - item.type | length > 0
       - item.type in [ "directory", "mysql" ]
       - item.destination is defined
-      - item.destination | length > 0
     quiet: yes
   loop: "{{ restore_objects }}"
   loop_control:
