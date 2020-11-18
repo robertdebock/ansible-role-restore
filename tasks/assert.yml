@@ -11,20 +11,6 @@
       - restore_remote_directory is defined
     quiet: yes
 
-- name: test if restore_mysql_username is set correctly
-  assert:
-    that:
-    quiet: yes
-  when:
-    - restore_mysql_username is defined
-
-- name: test if restore_mysql_password is set correctly
-  assert:
-    that:
-    quiet: yes
-  when:
-    - restore_mysql_password is defined
-
 - name: test if restore_objects is set correctly
   assert:
     that:
@@ -37,7 +23,7 @@
     that:
       - item.name is defined
       - item.type is defined
-      - item.type in [ "directory", "mysql" ]
+      - item.type in [ "directory", "mysql", "postgres" ]
       - item.destination is defined
     quiet: yes
   loop: "{{ restore_objects }}"

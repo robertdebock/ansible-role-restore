@@ -20,6 +20,10 @@
         - name: restore
           password: rest0re
           priv: "test_db.*:ALL"
+    - role: robertdebock.postgres
+      postgres_databases:
+        - name: test_db
+          state: present
     - role: robertdebock.backup
       backup_format: zip
       backup_objects:
@@ -28,6 +32,10 @@
           source: /home
         - name: test_db
           type: mysql
+          source: test_db
+          format: zip
+        - name: test_db
+          type: postgres
           source: test_db
           format: zip
     - role: ansible-role-restore

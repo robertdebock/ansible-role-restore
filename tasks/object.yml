@@ -61,3 +61,26 @@
   when:
     - latest_file is defined
     - object.type == "mysql"
+
+- name: unarchive postgres object
+  unarchive:
+    src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
+    dest: "{{ restore_remote_directory }}"
+    exclude: "{{ object.exclude | default(omit) }}"
+    remote_src: yes
+    mode: "0755"
+  when:
+    - latest_file is defined
+    - object.type == "postgres"
+    - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
+
+- name: import postgres database
+  postgresql_db:
+    name: "{{ object.destination }}"
+    target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
+    state: restore
+  become_user: postgres
+  become: yes
+  when:
+    - latest_file is defined
+    - object.type == "mysql"
