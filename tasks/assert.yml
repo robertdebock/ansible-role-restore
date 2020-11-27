@@ -4,12 +4,14 @@
   assert:
     that:
       - restore_directory is defined
+      - restore_directory is string
     quiet: yes
 
 - name: test if restore_remote_directory is set correctly
   assert:
     that:
       - restore_remote_directory is defined
+      - restore_remote_directory is string
     quiet: yes
 
 - name: test if restore_objects is set correctly
@@ -23,9 +25,12 @@
   assert:
     that:
       - item.name is defined
+      - item.name is string
       - item.type is defined
+      - item.type is string
       - item.type in [ "directory", "mysql", "postgres" ]
       - item.destination is defined
+      - item.destination is string
     quiet: yes
   loop: "{{ restore_objects }}"
   loop_control:
