@@ -4,7 +4,7 @@ The purpose of this role is to restore objects to your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-restore/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-restore/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-restore/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-restore)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/restore)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/restore)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-restore.svg)](https://github.com/robertdebock/ansible-role-restore/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-restore/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-restore/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-restore/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-restore)|[![quality](https://img.shields.io/ansible/quality/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![downloads](https://img.shields.io/ansible/role/d/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-restore.svg)](https://github.com/robertdebock/ansible-role-restore/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
