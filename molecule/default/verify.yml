@@ -6,7 +6,7 @@
 
   pre_tasks:
     - name: create a directory to backup
-      file:
+      ansible.builtin.file:
         path: /home/test
         state: directory
 
