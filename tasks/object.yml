@@ -28,6 +28,7 @@
   when:
     - latest_file is defined
     - object.type == "directory"
+  changed_when: yes
 
 - name: Find extension
   ansible.builtin.set_fact:
