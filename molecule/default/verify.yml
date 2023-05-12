@@ -5,7 +5,7 @@
   gather_facts: yes
 
   pre_tasks:
-    - name: create a directory to backup
+    - name: Create a directory to backup
       ansible.builtin.file:
         path: /home/test
         state: directory
@@ -13,28 +13,28 @@
   roles:
     - role: robertdebock.mysql
       mysql_databases:
-        - name: test_db
+        - name: Test_db
           encoding: utf8
           collation: utf8_bin
       mysql_users:
-        - name: restore
+        - name: Restore
           password: rest0re
           priv: "test_db.*:ALL"
     - role: robertdebock.postgres
       postgres_databases:
-        - name: test_db
+        - name: Test_db
           state: present
     - role: robertdebock.backup
       backup_format: zip
       backup_objects:
-        - name: home
+        - name: Home
           type: directory
           source: /home
-        - name: test_db
+        - name: Test_db
           type: mysql
           source: test_db
           format: zip
-        - name: test_db
+        - name: Test_db
           type: postgres
           source: test_db
           format: zip
@@ -42,9 +42,9 @@
       restore_mysql_username: restore
       restore_mysql_password: rest0re
       restore_objects:
-        - name: home
+        - name: Home
           type: directory
           destination: /home
-        - name: test_db
+        - name: Test_db
           type: mysql
           destination: test_db
