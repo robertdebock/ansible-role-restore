@@ -13,28 +13,28 @@
   roles:
     - role: robertdebock.mysql
       mysql_databases:
-        - name: Test_db
+        - name: test_db
           encoding: utf8
           collation: utf8_bin
       mysql_users:
-        - name: Restore
+        - name: restore
           password: rest0re
           priv: "test_db.*:ALL"
     - role: robertdebock.postgres
       postgres_databases:
-        - name: Test_db
+        - name: test_db
           state: present
     - role: robertdebock.backup
       backup_format: zip
       backup_objects:
-        - name: Home
+        - name: home
           type: directory
           source: /home
-        - name: Test_db
+        - name: test_db
           type: mysql
           source: test_db
           format: zip
-        - name: Test_db
+        - name: test_db
           type: postgres
           source: test_db
           format: zip
@@ -42,9 +42,9 @@
       restore_mysql_username: restore
       restore_mysql_password: rest0re
       restore_objects:
-        - name: Home
+        - name: home
           type: directory
           destination: /home
-        - name: Test_db
+        - name: test_db
           type: mysql
           destination: test_db
