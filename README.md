@@ -2,9 +2,9 @@
 
 The purpose of this role is to restore objects to your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-restore/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-restore/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-restore/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-restore)|[![quality](https://img.shields.io/ansible/quality/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![downloads](https://img.shields.io/ansible/role/d/29918)](https://galaxy.ansible.com/robertdebock/restore)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-restore.svg)](https://github.com/robertdebock/ansible-role-restore/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-restore/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-restore/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-restore/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-restore)|[![downloads](https://img.shields.io/ansible/role/d/24578)](https://galaxy.ansible.com/robertdebock/restore)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-restore.svg)](https://github.com/robertdebock/ansible-role-restore/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -123,7 +123,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-restore/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-restore/issues).
 
 ## [License](#license)
 
