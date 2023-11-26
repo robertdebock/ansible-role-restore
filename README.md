@@ -1,4 +1,4 @@
-# Ansible role [restore](#restore)
+# [Ansible role restore](#restore)
 
 The purpose of this role is to restore objects to your system.
 
