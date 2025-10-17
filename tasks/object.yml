@@ -12,7 +12,7 @@
   ansible.builtin.set_fact:
     latest_file: "{{ restore_found_files.files | sort(attribute='mtime') | last }}"
   when:
-    - restore_found_files.files | length
+    - restore_found_files.files | length > 0
 
 - name: object | Copy latest_file
   ansible.builtin.copy:
