@@ -12,3 +12,14 @@
     - role: robertdebock.epel
     - role: robertdebock.python_pip
     - role: robertdebock.postgres
+
+  tasks:
+    - name: Create MySQL user for restore
+      community.mysql.mysql_user:
+        name: restore
+        password: rest0re
+        priv: "*.*:ALL"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password | default('') }}"
+      when: mysql_root_password is defined

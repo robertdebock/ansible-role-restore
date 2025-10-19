@@ -18,7 +18,7 @@
   ansible.builtin.copy:
     src: "{{ latest_file.path }}"
     dest: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
-    mode: "0644"
+    mode: "0600"
   when:
     - latest_file is defined
 
@@ -35,7 +35,7 @@
     latest_file_extension: "{{ latest_file.path | basename | splitext | last }}"
   when:
     - latest_file is defined
-    - object.type == "mysql"
+    - object.type in [ "mysql", "postgres" ]
 
 - name: object | Unarchive mysql object
   ansible.builtin.unarchive:
@@ -43,11 +43,30 @@
     dest: "{{ restore_remote_directory }}"
     exclude: "{{ object.exclude | default(omit) }}"
     remote_src: true
-    mode: "0755"
+    mode: "0600"
   when:
     - latest_file is defined
     - object.type == "mysql"
     - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
+
+- name: object | Check if mysql database exists
+  community.mysql.mysql_db:
+    name: "{{ object.destination }}"
+    login_unix_socket: "{{ restore_mysql_socket }}"
+    login_user: "{{ restore_mysql_username | default(omit) }}"
+    login_password: "{{ restore_mysql_password | default(omit) }}"
+    state: present
+  register: mysql_db_check
+  when:
+    - latest_file is defined
+    - object.type == "mysql"
+
+- name: object | Check if database needs import
+  ansible.builtin.set_fact:
+    database_needs_import: "{{ mysql_db_check.changed | default(true) }}"
+  when:
+    - latest_file is defined
+    - object.type == "mysql"
 
 - name: object | Import mysql database
   community.mysql.mysql_db:
@@ -60,6 +79,7 @@
   when:
     - latest_file is defined
     - object.type == "mysql"
+    - database_needs_import | default(true)
 
 - name: object | Unarchive postgres object
   ansible.builtin.unarchive:
@@ -67,7 +87,7 @@
     dest: "{{ restore_remote_directory }}"
     exclude: "{{ object.exclude | default(omit) }}"
     remote_src: true
-    mode: "0755"
+    mode: "0600"
   when:
     - latest_file is defined
     - object.type == "postgres"
@@ -82,4 +102,4 @@
   become: true
   when:
     - latest_file is defined
-    - object.type == "mysql"
+    - object.type == "postgres"
