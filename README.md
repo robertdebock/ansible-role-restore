@@ -47,6 +47,17 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.epel
     - role: robertdebock.python_pip
     - role: robertdebock.postgres
+
+  tasks:
+    - name: Create MySQL user for restore
+      community.mysql.mysql_user:
+        name: restore
+        password: rest0re
+        priv: "*.*:ALL"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password | default('') }}"
+      when: mysql_root_password is defined
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -77,7 +88,7 @@ restore_remote_directory: /tmp
 #   type, either directory or mysql.
 #   destination, a directory where to unpack the object.
 #
-# Nota bene; the [backup role](http://galaxy.ansible.com/robertdebock/backup) can be used to create restorable objects. The objects created with this role include the parent directory, so the destination mentioned here ~misses~ the last part of the directory
+# Nota bene; the [backup role](http://galaxy.ansible.com/robertdebock/backup) can be used to create restorable objects. The objects created with this role include the parent directory, so the destination mentioned here misses the last part of the directory
 
 restore_objects:
   - name: varspool
