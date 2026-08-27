@@ -50,7 +50,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   tasks:
     - name: Create MySQL user for restore
-      community.mysql.mysql_user:
+      ansible.mysql.mysql_user:
         name: restore
         password: rest0re
         priv: "*.*:ALL"
