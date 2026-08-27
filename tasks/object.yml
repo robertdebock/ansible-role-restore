@@ -50,7 +50,7 @@
     - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
 
 - name: object | Check if mysql database exists
-  community.mysql.mysql_db:
+  ansible.mysql.mysql_db:
     name: "{{ object.destination }}"
     login_unix_socket: "{{ restore_mysql_socket }}"
     login_user: "{{ restore_mysql_username | default(omit) }}"
@@ -69,7 +69,7 @@
     - object.type == "mysql"
 
 - name: object | Import mysql database
-  community.mysql.mysql_db:
+  ansible.mysql.mysql_db:
     name: "{{ object.destination }}"
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
     login_unix_socket: "{{ restore_mysql_socket }}"
