@@ -1,0 +1,23 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "restore" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.backup" [fillcolor=green style=filled]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.core_dependencies" [fillcolor=green style=filled]
+    "robertdebock.mysql" [fillcolor=green style=filled]
+    "robertdebock.buildtools" [fillcolor=green style=filled]
+    "robertdebock.epel" [fillcolor=green style=filled]
+    "robertdebock.python_pip" [fillcolor=green style=filled]
+    "robertdebock.postgres" [fillcolor=green style=filled]
+  }
+  "restore" -> "robertdebock.backup"
+  "restore" -> "robertdebock.bootstrap"
+  "restore" -> "robertdebock.core_dependencies"
+  "restore" -> "robertdebock.mysql"
+  "restore" -> "robertdebock.buildtools"
+  "restore" -> "robertdebock.epel"
+  "restore" -> "robertdebock.python_pip"
+  "restore" -> "robertdebock.postgres"
+}
