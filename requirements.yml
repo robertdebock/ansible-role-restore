@@ -9,6 +9,6 @@ roles:
   - name: robertdebock.postgres
 collections:
   - name: community.postgresql
-  - name: community.mysql
+  - name: ansible.mysql
   - name: ansible.mysql
   - name: community.general
